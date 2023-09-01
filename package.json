@@ -1,0 +1,19 @@
+{
+  "name": "wilsonsio",
+  "version": "1.0.0",
+  "description": "Ecosystem for personal webdite",
+  "private": "true",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SgiobairOg/WilsonsIO.git"
+  },
+  "author": "Aoibhe Wilson <aoibhe@wilsons.io>",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/SgiobairOg/WilsonsIO/issues"
+  },
+  "homepage": "https://github.com/SgiobairOg/WilsonsIO#readme"
+}
