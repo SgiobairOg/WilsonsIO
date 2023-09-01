@@ -1,0 +1,39 @@
+---
+import { getLangFromUrl } from '../i18n/utils'
+import LanguagePicker from '../components/LanguagePicker.astro'
+import ThemeToggle from '../components/ThemeToggle.astro'
+
+import '@styles/global.scss';
+
+const currentLang = getLangFromUrl(Astro.url);
+---
+<!DOCTYPE html>
+<html lang={currentLang}>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta name="generator" content={Astro.generator} />
+  <meta name="color-scheme" content="dark light">
+
+  <title>Aoibhe Wilson</title>
+</head>
+<body>
+  <header>
+    <div class="controls">
+      <LanguagePicker />
+      <ThemeToggle />
+    </div>
+  </header>
+  <slot />
+</body>
+</html>
+
+<style lang="scss">
+  .controls {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 0.5rem;
+  }
+</style>

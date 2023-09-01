@@ -1,0 +1,63 @@
+$theme-color-white: 0 0% 100%;
+$theme-color-white-soft: 0 0% 97%;
+$theme-color-white-mute: 0 0% 94%;
+
+$theme-color-black: 201 43% 19%;
+$theme-color-black-soft: 201 43% 16%;
+$theme-color-black-mute: 201 43% 13%;
+
+$theme-color-pink: 326 100% 83%;
+$theme-color-pink-soft: 326 100% 80%;
+$theme-color-pink-mute: 326 100% 77%;
+
+$theme-color-divider-light-1: 354 32% 33%;
+$theme-color-divider-light-2: 354 32% 23%;
+$theme-color-divider-dark-1: 326 30% 43%;
+$theme-color-divider-dark-2: 326 30% 33%;
+
+$theme-color-text-light-1: $theme-color-black-soft;
+$theme-color-text-light-2: $theme-color-black-mute;
+$theme-color-text-dark-1: $theme-color-white-soft;
+$theme-color-text-dark-2: $theme-color-white-mute;
+
+$border-radius: 0.35rem;
+
+$button-padding: 0.5rem 0.75rem;
+$button-shadow: 0px 8px 10px hsla(0,0%,0%,0.3);
+
+$section-gap: 160px;
+
+
+/* semantic color variables for this project */
+
+:root {
+  --color-background: #{$theme-color-white};
+  --color-background-soft: #{$theme-color-white-soft};
+  --color-background-mute: #{$theme-color-white-mute};
+
+  --color-primary: #{$theme-color-pink};
+  --color-primary-soft: #{$theme-color-pink-soft};
+  --color-primary-mute: #{$theme-color-pink-mute};
+
+  --color-border: #{$theme-color-divider-light-2};
+  --color-border-hover: #{$theme-color-divider-light-1};
+
+  --color-heading: #{$theme-color-text-light-1};
+  --color-text: #{$theme-color-text-light-1};
+}
+
+:root.dark {
+  --color-background: #{$theme-color-black};
+  --color-background-soft: #{$theme-color-black-soft};
+  --color-background-mute: #{$theme-color-black-mute};
+
+  --color-primary: #{$theme-color-pink};
+  --color-primary-soft: #{$theme-color-pink-soft};
+  --color-primary-mute: #{$theme-color-pink-mute};
+
+  --color-border: #{$theme-color-divider-dark-2};
+  --color-border-hover: #{$theme-color-divider-dark-1};
+
+  --color-heading: #{$theme-color-text-dark-1};
+  --color-text: #{$theme-color-text-dark-2};
+}

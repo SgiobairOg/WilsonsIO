@@ -1,0 +1,72 @@
+---
+import { languages } from '../i18n/ui'
+import { useTranslations, getLangFromUrl } from './../i18n/utils';
+import { Icon } from 'astro-icon'
+
+const {lang: currentLang, path} = getLangFromUrl(Astro.url);
+const t = useTranslations(currentLang);
+---
+<ul class="language-picker">
+  <li aria-hidden="true" class="language-picker_icon">
+    <Icon pack="ph" name="translate-bold" />
+  </li>
+  {Object.entries(languages).map(([lang, label]) => (
+    <li class:list={[
+          "language-picker_item",
+          { "language-picker_item--active": lang === currentLang}
+          ]}>
+      <a class="language-picker_link" href={`/${lang}/${path}`} title={t(`lang.viewIn${lang.toUpperCase()}`, {markdown: false})}>{label}</a>
+    </li>
+  ))}
+</ul>
+
+<style lang="scss">
+  @import './../styles/_variables.scss';
+
+  .language-picker {
+    display: inline-flex;
+    flex-flow: row nowrap;
+    justify-content: flex-start;
+    list-style-type: none;
+    padding: 0.5rem .75rem;
+    margin: 0 0.5rem;
+    color: hsl(var(--color-text));
+    border: 2px solid hsl(var(--color-text));
+    border-radius: 2rem;
+    line-height: 1.5rem;
+    box-sizing: border-box;
+
+    &_item {
+      padding: 0 0.75rem;
+      display: block;
+      font-weight: 500;
+      pointer-events: all;
+
+      &--active {
+        display: none;
+      }
+
+      &:disabled {
+        background-color: hsl(var(--color-background-mute));
+        color: hsl(var(--color-heading));
+        font-weight: 500;
+        pointer-events: none;
+      }
+
+      &:hover {
+        background-color: hsl(var(--color-primary-mute));
+      }
+    }
+
+    &_link {
+      color: hsl(var(--color-text));
+    }
+
+    &_icon {
+      width: 1.25rem;
+      display: flex;
+      justify-content: center;
+      align-content: center;
+    }
+}
+</style>
