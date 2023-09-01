@@ -2,7 +2,7 @@
   "name": "wilsonsio",
   "version": "0.0.0",
   "description": "Ecosystem for personal webdite",
-  "private": "true",
+  "private": true,
   "scripts": {
     "preinstall": "npx only-allow pnpm",
     "release" : "standard-version"
