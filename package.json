@@ -4,6 +4,7 @@
   "description": "Ecosystem for personal webdite",
   "private": "true",
   "scripts": {
+    "preinstall": "npx only-allow pnpm",
     "release" : "standard-version"
   },
   "repository": {
