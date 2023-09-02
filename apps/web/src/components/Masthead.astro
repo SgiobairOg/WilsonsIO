@@ -1,0 +1,61 @@
+---
+import { languages } from '@i18n/ui'
+import { useTranslations, getUrlInfo } from '@i18n/utils';
+
+const {lang: currentLang, path: currentPath} = getUrlInfo(Astro.url);
+const t = useTranslations(currentLang);
+---
+
+<header class="masthead">
+  <h1 class="title">
+    {t('header.greeting', {markdown: false})}
+  </h1>
+  <p class="subtitle">{t('header.intro', {markdown: false})}</p>
+</header>
+
+<style lang="scss">
+  @import './../styles/_variables.scss';
+
+  .masthead {
+    display: flex;
+    flex-flow: column nowrap;
+    overflow: hidden;
+    margin: 3rem 0;
+    padding: 0 2rem;
+    max-width: 100%;
+    justify-content:flex-start;
+    align-items:flex-start;
+    text-align: left;
+    grid-area: mast;
+  }
+
+  :root[lang="jp"] .masthead {
+    width: 80vw;
+    grid-row-start: mast;
+    grid-row-end: nav;
+    grid-column-start: mast;
+    grid-column-end: nav;
+  }
+
+  .title {
+    font-family: "Cherry Bomb One";
+    font-size: 5rem;
+    line-height: 6rem;
+    max-width: 100%;
+    font-weight: 700;
+    white-space: pre;
+    margin: 0;
+    color: hsl(var(--color-primary));
+  }
+  .subtitle {
+    font-family: $fonts;
+    max-width: 34rem;
+    font-weight: 300;
+    font-size: 2rem;
+    white-space: pre-wrap;
+    word-break: keep-all;
+    margin: 2rem 0 2rem;
+    color: hsl(var(--color-text));
+    position: relative;
+  }
+</style>
