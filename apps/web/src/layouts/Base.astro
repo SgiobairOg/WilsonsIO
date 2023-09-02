@@ -1,5 +1,9 @@
 ---
 import { getUrlInfo } from '@i18n/utils'
+import LanguagePicker from '@components/LanguagePicker.astro'
+import ThemeToggle from '@components/ThemeToggle.astro'
+import NavBar from '@components/NavBar.astro'
+import Masthead from '@components/Masthead.astro'
 
 import '@styles/global.scss';
 
@@ -12,26 +16,75 @@ const {lang: currentLang} = getUrlInfo(Astro.url);
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<meta name="generator" content={Astro.generator} />
   <meta name="color-scheme" content="dark light">
+  <link href="https://fonts.googleapis.com/earlyaccess/nicomoji.css" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cherry+Bomb+One&family=Hachi+Maru+Pop&display=swap" rel="stylesheet">  
 
   <title>Aoibhe Wilson</title>
 </head>
-<body>
-  <header>
-    <div class="controls">
-      <LanguagePicker />
-      <ThemeToggle />
-    </div>
-  </header>
+<body class="layout">
+  <div class="controls">
+    <LanguagePicker />
+    <ThemeToggle />
+  </div>
+  <NavBar />
   <slot />
+  </main>
 </body>
 </html>
 
 <style lang="scss">
+  @use './../styles/_variables.scss' as *;
   .controls {
     display: flex;
     flex-flow: row nowrap;
     justify-content: flex-end;
-    align-items: center;
-    padding: 0.5rem;
+    align-items: flex-start;
+    padding: 1rem 1rem 0 0;
+    grid-area: controls;
+  }
+  .layout {
+    width: 100vw;
+    max-width: 100%;
+    display: grid;
+    grid-template-columns: 1fr minmax(max-content, 80px);
+    grid-template-rows: 7rem max-content 1fr 10rem;
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+    grid-template-areas:
+    "controls controls"
+    "nav nav"
+    "content content"
+    "footer footer";
+
+  }
+
+  :root[lang="jp"] .layout {
+    grid-template-columns: 1fr minmax(max-content, 80px);
+    grid-template-areas:
+    "controls controls"
+    "content nav"
+    "content ."
+    "footer footer";
+  }
+
+  @include media(">mobile") {
+    .layout {
+      grid-template-columns: 80px 1fr;
+      grid-template-areas:
+      ". controls"
+      ". nav"
+      ". content"
+      ". footer";
+    }
+    :root[lang="jp"] .layout {
+      grid-template-columns: minmax(max-content, 80px) 1fr;
+      grid-template-areas:
+      "controls controls"
+      "nav content"
+      ". content"
+      ". footer";
+    }
   }
 </style>
