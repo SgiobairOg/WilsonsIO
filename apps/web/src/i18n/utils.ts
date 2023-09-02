@@ -8,26 +8,25 @@ interface TranslationOptions {
   markdown?: boolean
 }
 
-export function getLangFromUrl(url: URL) {
-    console.log({
-      path: url.pathname,
-      split: url.pathname.split('/')
-    })
+interface UrlInfo {
+  lang: keyof typeof ui,
+  pathNodes: Array<string>,
+  path: string
+}
+
+export function getUrlInfo(url: URL):UrlInfo {
     const [,lang, ...pathNodes] = url.pathname.split('/')
 
     if (lang in ui) return {
       'lang': lang as keyof typeof ui,
+      pathNodes,
       'path': pathNodes.join('/'),
     }
     return {
       'lang': defaultLang,
+      pathNodes,
       'path': pathNodes.join('/'),
     }
-}
-
-export function getPathFromUrl(url: URL) {
-  const [,lang, ...pathNodes] = url.pathname.split('/')
-  return pathNodes.join('/');
 }
 
 export function useTranslations(lang: keyof typeof ui) {
@@ -38,6 +37,8 @@ export function useTranslations(lang: keyof typeof ui) {
 
     return function t(key: keyof typeof ui[typeof defaultLang], options?: TranslationOptions):string {
       let label = ui[lang][key] || ui[defaultLang][key]
+
+      if( !label) label = `{ ${key} )`;
 
       const {markdown = true} = {...options}
 

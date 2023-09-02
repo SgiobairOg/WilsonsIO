@@ -1,11 +1,9 @@
 ---
-import { getLangFromUrl } from '../i18n/utils'
-import LanguagePicker from '../components/LanguagePicker.astro'
-import ThemeToggle from '../components/ThemeToggle.astro'
+import { getUrlInfo } from '@i18n/utils'
 
 import '@styles/global.scss';
 
-const currentLang = getLangFromUrl(Astro.url);
+const {lang: currentLang} = getUrlInfo(Astro.url);
 ---
 <!DOCTYPE html>
 <html lang={currentLang}>
