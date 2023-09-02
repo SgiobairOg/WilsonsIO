@@ -1,0 +1,49 @@
+---
+import Base from '@layouts/Base.astro'
+import { useTranslations } from '@i18n/utils';
+
+
+export function getStaticPaths() {
+  return [
+    {params: {lang: 'en'}},
+    {params: {lang: 'jp'}},
+  ];
+}
+
+const {lang: currentLang} = Astro.params;
+const t = useTranslations(currentLang);
+---
+
+<Base>
+  <main class="content">
+    <h1>{t('blog.title', {'markdown': false})}</h1>
+    <Fragment set:html={t('blog.intro')} />
+  </main>
+</Base>
+
+<style lang="scss">
+  .content {
+    padding: 0 2rem;
+    grid-area: content;
+  }
+
+  .content :global(*) {
+    font-size: 28px;
+  }
+
+  .content :global(h1) {
+    font-size: 5rem;
+    line-height: 4rem;
+    margin-bottom: 3rem;
+    font-family:  "Cherry Bomb One";
+    color: hsl(var(--color-primary));
+  }
+
+  .content :global(h2) {
+    font-size: 2rem;
+    line-height: 1.5rem;
+    margin-bottom: 2rem;
+    font-family:  "Cherry Bomb One";
+    color: hsl(var(--color-primary));
+  }
+</style>

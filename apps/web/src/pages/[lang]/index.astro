@@ -1,6 +1,6 @@
 ---
-import Base from '../../layouts/Base.astro'
-import { useTranslations, getLangFromUrl } from './../../i18n/utils';
+import Home from '../../layouts/Home.astro'
+import { useTranslations } from './../../i18n/utils';
 
 export function getStaticPaths() {
   return [
@@ -13,6 +13,13 @@ const {lang: currentLang} = Astro.params;
 const t = useTranslations(currentLang);
 ---
 
-<Base>
-  <h1><Fragment set:html={t("util.hello")}/></h1>
-</Base>
+<Home>
+  <main class="content">
+  </main>
+</Home>
+
+<style lang="scss">
+  .content {
+    padding: 0 2rem;
+  }
+</style>

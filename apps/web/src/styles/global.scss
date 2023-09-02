@@ -8,14 +8,3 @@ html, body {
   width: 100vw;
   max-width: 100%;
 }
-
-#app {
-  padding: 2rem 5rem;
-  font-weight: normal;
-}
-
-@media (min-width: 680px) {
-  #app {
-    padding: 5rem 8rem;
-  }
-}

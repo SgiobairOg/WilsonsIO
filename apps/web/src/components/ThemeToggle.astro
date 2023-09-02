@@ -1,9 +1,9 @@
 ---
 import { languages } from '../i18n/ui'
-import { useTranslations, getLangFromUrl } from './../i18n/utils';
+import { useTranslations, getUrlInfo } from './../i18n/utils';
 import { Icon } from 'astro-icon'
 
-const currentLang = getLangFromUrl(Astro.url);
+const {lang: currentLang} = getUrlInfo(Astro.url);
 const t = useTranslations(currentLang);
 ---
 <button id="themeToggle" class="theme-toggle">

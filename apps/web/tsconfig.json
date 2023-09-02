@@ -4,6 +4,9 @@
     "baseUrl": "./src",
     "paths": {
       "@styles/*": ["styles/*"],
+      "@i18n/*": ["i18n/*"],
+      "@components/*": ["components/*"],
+      "@layouts/*": ["layouts/*"],
     },
   },
 }
