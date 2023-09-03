@@ -29,25 +29,32 @@ export function getUrlInfo(url: URL):UrlInfo {
     }
 }
 
-export function useTranslations(lang: keyof typeof ui) {
-    function replacePlaceholder(input: string, key: string, value: string):string {
-      const regex = new RegExp(`{${key}\}`, 'i')
-      return input.replace(regex, value)
+export function capitalise(term: string) {
+  return term[0].toUpperCase() + term.slice(1)
+}
+
+export function useTranslations(lang = defaultLang) {
+
+  function replacePlaceholder(input: string, key: string, value: string):string {
+    const regex = new RegExp(`{${key}\}`, 'i')
+    return input.replace(regex, value)
+  }
+
+  return function t(key: keyof typeof ui[typeof defaultLang], options?: TranslationOptions):string {
+    let label = Object.keys(ui[lang as typeof defaultLang]).includes(key)
+      ? ui[lang as typeof defaultLang][key]
+      : ui[defaultLang][key]
+
+    if( !label) label = `{ ${key} }`;
+
+    const {markdown = true} = {...options}
+
+    if(options?.replacements) {
+      options.replacements.forEach(replacement => {
+        const [key, value] = Object.entries(replacement)[0]
+        label = replacePlaceholder(label, key, value)
+      })
     }
-
-    return function t(key: keyof typeof ui[typeof defaultLang], options?: TranslationOptions):string {
-      let label = ui[lang][key] || ui[defaultLang][key]
-
-      if( !label) label = `{ ${key} )`;
-
-      const {markdown = true} = {...options}
-
-      if(options?.replacements) {
-        options.replacements.forEach(replacement => {
-          const [key, value] = Object.entries(replacement)[0]
-          label = replacePlaceholder(label, key, value)
-        })
-      }
-      return markdown ? parse(label) : label
-    }
+    return markdown ? parse(label) : label
+  }
 }
