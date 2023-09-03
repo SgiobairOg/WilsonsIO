@@ -29,7 +29,9 @@ const {lang: currentLang} = getUrlInfo(Astro.url);
     <ThemeToggle />
   </div>
   <NavBar />
-  <slot />
+  <Masthead />
+  <main class="content">
+    <slot />
   </main>
 </body>
 </html>
@@ -49,12 +51,13 @@ const {lang: currentLang} = getUrlInfo(Astro.url);
     max-width: 100%;
     display: grid;
     grid-template-columns: 1fr minmax(max-content, 80px);
-    grid-template-rows: 7rem max-content 1fr 10rem;
+    grid-template-rows: 7rem max-content 80vh 1fr 10rem;
     grid-column-gap: 0px;
     grid-row-gap: 0px;
     grid-template-areas:
     "controls controls"
     "nav nav"
+    "mast mast"
     "content content"
     "footer footer";
 
@@ -64,8 +67,9 @@ const {lang: currentLang} = getUrlInfo(Astro.url);
     grid-template-columns: 1fr minmax(max-content, 80px);
     grid-template-areas:
     "controls controls"
-    "content nav"
-    "content ."
+    "mast nav"
+    "mast nav"
+    "content content"
     "footer footer";
   }
 
@@ -75,6 +79,7 @@ const {lang: currentLang} = getUrlInfo(Astro.url);
       grid-template-areas:
       ". controls"
       ". nav"
+      ". mast"
       ". content"
       ". footer";
     }
@@ -82,7 +87,8 @@ const {lang: currentLang} = getUrlInfo(Astro.url);
       grid-template-columns: minmax(max-content, 80px) 1fr;
       grid-template-areas:
       "controls controls"
-      "nav content"
+      "nav mast"
+      "nav mast"
       ". content"
       ". footer";
     }

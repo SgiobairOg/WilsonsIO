@@ -1,0 +1,81 @@
+---
+import { languages } from '@i18n/ui'
+import { useTranslations, getUrlInfo } from '@i18n/utils';
+import { Icon } from 'astro-icon'
+
+const {lang: currentLang, path: currentPath} = getUrlInfo(Astro.url);
+
+console.log({
+  urlInfo: getUrlInfo(Astro.url),
+  
+})
+const t = useTranslations(currentLang);
+
+const routes = {
+  'nav.home': `/${currentLang}/`,
+  'nav.cv': `/${currentLang}/cv/`,
+  'nav.blog':`/${currentLang}/blog/`,
+  'nav.about': `/${currentLang}/about/`,
+}
+---
+
+<nav class="main-nav">
+  <ol class="main-nav_list">
+    {Object.entries(routes)
+      .filter(([label, path]) => {
+        console.log({
+          path,
+          curr: `/${currentLang}/${currentPath}`
+        })
+        return path !== `/${currentLang}/${currentPath}`})
+      .map(([label, path]) => (
+        <li class="main-nav_item">
+          <a class="main-nav_link" href={path}>{t(label, {markdown:false})}</a>
+        </li>
+      ))}
+  </ol>
+</nav>
+
+<style lang="scss">
+  @import './../styles/_variables.scss';
+  .main-nav {
+    padding: 1rem 2rem 2rem;
+    max-width: 100%;
+    grid-area: nav;
+
+
+    &_list {
+      display: flex;
+      flex-flow: row nowrap;
+      justify-content: flex-start;
+      align-items: center;
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    &_link {
+      padding: 0.75rem 0.5rem;
+      color: hsl(var(--color-text));
+      font-size: 1.25rem;
+
+      &:visited {
+        color: hsl(var(--color-secondary-soft))
+      }
+
+      &:hover {
+        color: hsl(var(--color-primary));
+      }
+
+      &:active {
+        color: hsl(var(--color-secondary))
+      }
+    }
+  }
+
+
+  :root[lang="jp"] .main-nav {
+    width: max-content;
+    writing-mode: vertical-rl;
+  }
+</style>
