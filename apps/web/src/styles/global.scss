@@ -1,6 +1,6 @@
-@use 'variables';
-@use 'mixins';
-@use 'base';
+@forward 'variables';
+@forward 'mixins';
+@forward 'base';
 
 html, body {
   margin: 0;
