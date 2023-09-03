@@ -8,5 +8,9 @@ export const EN = {
     'lang.viewInJP': 'このページを日本語でご覧になりたい方は',
     'lang.viewInEN': 'View this page in English',
     'blog.title': 'Blog',
-    'blog.intro': `As I've begun to treat and recover from my ADD and burnout, I've started to write some more.\nI hope to make this a space where I can share useful information for you, and show off some of my abilities.`
+    'blog.intro': `As I've begun to treat and recover from my ADD and burnout, I've started to write some more.\nI hope to make this a space where I can share useful information for you, and show off some of my abilities.`,
+    'blog.relatedPosts': 'You might also like these related posts:',
+    'blog.noPosts': 'I\'m working on my posts. Please check back soon.',
+    'tags.intro': `Here's a collection of my posts that match with the '{tag}' tag. Happy reading!`,
+    'tags.ariaLabel': `Read more stories that match with the '{tag}' tag.`,
 }
