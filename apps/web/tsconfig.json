@@ -7,6 +7,8 @@
       "@i18n/*": ["i18n/*"],
       "@components/*": ["components/*"],
       "@layouts/*": ["layouts/*"],
+      "@content/*": ["content/*"],
+      "@typings/*": ["types/*"],
     },
   },
 }
