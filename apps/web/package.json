@@ -12,7 +12,10 @@
   "dependencies": {
     "astro": "^3.0.5",
     "astro-icon": "^0.8.1",
-    "marked": "^7.0.5",
-    "sass": "^1.66.1"
+    "marked": "^7.0.5"
+  },
+  "devDependencies": {
+    "sass": "^1.66.1",
+    "zod": "^3.22.2"
   }
 }
