@@ -5,10 +5,6 @@ import { Icon } from 'astro-icon'
 
 const {lang: currentLang, path: currentPath} = getUrlInfo(Astro.url);
 
-console.log({
-  urlInfo: getUrlInfo(Astro.url),
-  
-})
 const t = useTranslations(currentLang);
 
 const routes = {
@@ -22,12 +18,7 @@ const routes = {
 <nav class="main-nav">
   <ol class="main-nav_list">
     {Object.entries(routes)
-      .filter(([label, path]) => {
-        console.log({
-          path,
-          curr: `/${currentLang}/${currentPath}`
-        })
-        return path !== `/${currentLang}/${currentPath}`})
+      .filter(([label, path]) => path !== `/${currentLang}/${currentPath}`)
       .map(([label, path]) => (
         <li class="main-nav_item">
           <a class="main-nav_link" href={path}>{t(label, {markdown:false})}</a>
@@ -37,11 +28,12 @@ const routes = {
 </nav>
 
 <style lang="scss">
-  @import './../styles/_variables.scss';
+  @use '@styles/_variables.scss' as *;
   .main-nav {
     padding: 1rem 2rem 2rem;
     max-width: 100%;
     grid-area: nav;
+    z-index: 1;
 
 
     &_list {
@@ -75,6 +67,7 @@ const routes = {
 
 
   :root[lang="jp"] .main-nav {
+    padding: 4.5rem .75rem 2rem 3.25rem;
     width: max-content;
     writing-mode: vertical-rl;
   }
