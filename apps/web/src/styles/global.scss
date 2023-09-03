@@ -8,3 +8,14 @@ html, body {
   width: 100vw;
   max-width: 100%;
 }
+
+@font-face {
+  font-family: 'NikuMaru';
+  src: 
+    local('NikuMaru'),
+    url('/fonts/NikuMaru.otf') format('opentype'), 
+    url('/fonts/NikuMaru.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
