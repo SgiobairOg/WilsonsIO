@@ -1,0 +1,87 @@
+---
+import BlogPost from '@layouts/BlogPost.astro'
+import type { CollectionEntry } from 'astro:content';
+import { capitalise, useTranslations } from '@i18n/utils';
+import { getEntry, getEntries } from 'astro:content';
+import BlogPostPreview from '@components/BlogPostPreview.astro';
+
+export const prerender = false
+
+const {lang: currentLang, slug} = Astro.params;
+const t = useTranslations(currentLang);
+
+let blogPost = await getEntry('blogPosts', `${currentLang}/${slug}`)
+
+if(!blogPost) {
+  const alternateLang = currentLang === 'jp' ? 'en' : 'jp'
+  blogPost = await getEntry('blogPosts', `${currentLang}/${slug}`)
+
+  if(!blogPost) {
+    return Astro.redirect("/404")
+  }
+}
+
+let relatedPosts: Array<CollectionEntry<'blogPosts'>> = []
+
+if(blogPost.data.relatedPosts && blogPost.data.relatedPosts.length) {
+  relatedPosts = await getEntries(blogPost.data.relatedPosts);
+}
+
+
+const { Content } = await blogPost.render()
+---
+
+<BlogPost post={blogPost} relatedPosts={relatedPosts}>
+  <Content />
+</BlogPost>
+
+<style lang="scss">
+  @use '@styles/_variables' as *;
+  @use '@styles/_mixins' as *;
+
+  .blog-content {
+    padding: 0 2rem;
+    grid-row-start: content;
+    grid-row-end: nav;
+    grid-column-start: content;
+    grid-column-end: nav;
+    font-size: 1.4em;
+  }
+
+  .blog-intro {
+    margin-bottom: 4rem;
+  }
+
+  :root[lang="jp"] .blog-intro {
+    margin-right: 3rem;
+  }
+
+  @include media(">mobile") {
+    :root[lang="jp"] .blog-intro {
+      margin-right: 0;
+      min-height: initial;
+    }
+  }
+
+  h1 {
+    font-size: 5rem;
+    line-height: 6.5rem;
+    margin-bottom: 1.5rem;
+    margin-right: 3.5rem;
+    max-width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-family:  "Cherry Bomb One";
+    color: hsl(var(--color-primary));
+  }
+
+  .no-posts {
+    width: 80%;
+    max-width: 36rem;
+    padding: 2rem;
+    margin: 7rem auto;
+    border: 2px solid hsl(var(--color-primary));
+    border-left-width: 6px;
+  }
+</style>

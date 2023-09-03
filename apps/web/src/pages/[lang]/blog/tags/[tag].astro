@@ -1,31 +1,27 @@
 ---
 import Base from '@layouts/Base.astro'
-import { useTranslations } from '@i18n/utils';
-import { getCollection, getEntry } from 'astro:content';
+import { capitalise, useTranslations } from '@i18n/utils';
+import { getCollection } from 'astro:content';
 import BlogPostPreview from '@components/BlogPostPreview.astro';
 
+export const prerender = false
 
-export function getStaticPaths() {
-  return [
-    {params: {lang: 'en'}},
-    {params: {lang: 'jp'}},
-  ];
-}
-
-const {lang: currentLang} = Astro.params;
+const {lang: currentLang, tag} = Astro.params;
 const t = useTranslations(currentLang);
 
+if(!currentLang || !tag) throw new Error('[[tag].astro partial] currentLang and tag are required params')
+
 const publishedBlogPosts = (await getCollection('blogPosts', ({data, id}) => {
-  return !data.isDraft && id.startsWith(currentLang)
+  return !data.isDraft && id.startsWith(currentLang) && data.tags.includes(tag)
 })).sort(
   (a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf()
 )
 ---
 
-<Base title={t('blog.title', {'markdown': false})}>
+<Base title={capitalise(tag)}>
   <main class="blog-content">
-    <h1>{t('blog.title', {'markdown': false})}</h1>
-    <div class="blog-intro" set:html={t('blog.intro')} />
+    <h1>{capitalise(tag)}</h1>
+    <div class="blog-intro" set:html={t('tags.intro', {replacements:[{'tag': tag}]})} />
 
     {publishedBlogPosts.length > 0 
       ? publishedBlogPosts.map(post => (<BlogPostPreview post={post} />))
@@ -52,8 +48,7 @@ const publishedBlogPosts = (await getCollection('blogPosts', ({data, id}) => {
   }
 
   :root[lang="jp"] .blog-intro {
-    margin-right: 3.5rem;
-    min-height: 17rem;
+    margin-right: 3rem;
   }
 
   @include media(">mobile") {
@@ -65,8 +60,13 @@ const publishedBlogPosts = (await getCollection('blogPosts', ({data, id}) => {
 
   h1 {
     font-size: 5rem;
-    line-height: 4rem;
-    margin-bottom: 3rem;
+    line-height: 6.5rem;
+    margin-bottom: 1.5rem;
+    margin-right: 3.5rem;
+    max-width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
     font-family:  "Cherry Bomb One";
     color: hsl(var(--color-primary));
   }

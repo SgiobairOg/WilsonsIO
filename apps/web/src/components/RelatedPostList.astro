@@ -1,0 +1,35 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { useTranslations } from '@i18n/utils';
+import { postUrlFromSlug } from '@content/blogPosts/_utils';
+
+interface Props {
+  posts: Array<CollectionEntry<'blogPosts'>>;
+}
+const { posts } = Astro.props;
+
+const {lang: currentLang} = Astro.params;
+const t = useTranslations(currentLang);
+
+if(!posts || !posts.length) throw new Error("[RelatedPostList]: Posts array is required");
+---
+
+<h2>{t('blog.relatedPosts', {markdown: false})}</h2>
+<ul class="posts_list">
+  { posts.map(post => (
+    <li class="posts_item"><a class="posts_link" href={postUrlFromSlug(post.slug)}>{post.data.title}</a></li>
+  ))}
+</ul>
+
+<style lang="scss">
+  @use '@styles/_variables.scss' as *;
+  @use '@styles/_mixins.scss' as *;
+
+  .posts_item {
+    margin: 0 0.35rem 0.25rem 0;
+  }
+
+  .posts_link {
+    @include primaryLinkStates();
+  }
+</style>

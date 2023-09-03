@@ -1,0 +1,67 @@
+---
+import BlogPostTagList from '@components/BlogPostTagList.astro'
+import type { CollectionEntry } from 'astro:content';
+interface Props {
+  post: CollectionEntry<'blogPosts'>;
+}
+
+const {post} = Astro.props
+
+const [lang,slug] = post.slug.split('/');
+const url = `/${lang}/blog/${slug}`
+
+---
+
+<article class="blog-post-preview">
+  <header class="preview-header">
+    <h2 class="preview-header_title">{post.data.title}</h2>
+    <p class="preview-header_publish-date"><i>Published on <time>{post.data.publishDate.toLocaleString()}</time></i></p>
+  </header>
+  <p class="preview-teaser">{post.data.teaser}</p>
+  <footer class="preview-footer">
+    <BlogPostTagList tags={post.data.tags} />
+    <a class="preview-link" href={url} title="Continue reading this article">Continue reading</a>
+  </footer>
+</article>
+
+<style lang="scss">
+  @use '../styles/_mixins.scss' as *;
+  .blog-post-preview {
+    margin: 2rem 0;
+    padding: 0 2rem;
+    border-left: 4px solid hsl(var(--color-primary));
+  }
+  .preview-header {
+    margin-bottom: 1rem;
+
+    &_title {
+      font-size: 2rem;
+      line-height: 1.5rem;
+      margin-bottom: 0.5rem;
+      font-family:  "Cherry Bomb One";
+      color: hsl(var(--color-primary));
+    }
+
+    &_publish-date,
+    &_publish-date time {
+      font-size: 0.9rem;
+    }
+  }
+
+  .preview-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-flow: row wrap;
+  }
+
+  .preview-link {
+    font-weight: 700;
+    @include secondaryLinkStates();
+    text-align: right;
+  }
+
+  .preview-teaser {
+    margin-bottom: 1rem;
+  }
+</style>

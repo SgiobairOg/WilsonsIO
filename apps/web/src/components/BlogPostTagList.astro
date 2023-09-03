@@ -1,0 +1,27 @@
+---
+import BlogPostTag from '@components/BlogPostTag.astro'
+const { tags } = Astro.props
+
+if(!tags?.length > 0) throw new Error("[BlogPostTagList]: Tag array is required");
+---
+
+<ul class="tags_list" aria-label="This article belongs to the following categories:">
+  { tags.map(tagName => (
+    <li class="tags_item"><BlogPostTag tagName={tagName} /></li>
+  ))}
+</ul>
+
+<style lang="scss">
+  .tags_list {
+    display: inline-flex;
+    flex-flow: row wrap;
+    justify-content: flex-start;
+    align-items: center;
+    list-style-type: none;
+    padding: 0;
+  }
+
+  .tags_item {
+    margin: 0 0.35rem 0.25rem 0;
+  }
+</style>

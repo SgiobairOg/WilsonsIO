@@ -1,0 +1,37 @@
+---
+import { useTranslations, getUrlInfo } from '@i18n/utils';
+
+const {lang: currentLang, path} = getUrlInfo(Astro.url);
+const t = useTranslations(currentLang);
+const { tagName } = Astro.props 
+---
+
+<div class="tag">
+  <a href={`/${currentLang}/blog/tags/${tagName}`} title={t('tags.ariaLabel', {replacements: [{'tag': tagName}], markdown: false})} class="tag_link">{tagName}</span>
+</div>
+
+<style lang="scss">
+@use '@styles/_variables.scss' as *;
+@use '@styles/_mixins.scss' as *;
+
+.tag {
+  display: inline-flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  font-size: 0.8rem;
+  list-style-type: none;
+  padding: 0.15rem .75rem 0.35rem;
+  margin: 0;
+  color: hsl(var(--color-text));
+  //border: 1px solid hsl(var(--color-text));
+  background: hsl(var(--color-background-soft));
+  border-radius: 2rem;
+  line-height: 1.5rem;
+  box-sizing: border-box;
+}
+
+.tag_link {
+  @include primaryLinkStates();
+}
+
+</style>
