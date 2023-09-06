@@ -3,13 +3,16 @@ import { parse } from 'marked'
 
 type Replacement = Record<string, string>
 
-interface TranslationOptions {
+export interface TranslationOptions {
   replacements?: Array<Replacement>
   markdown?: boolean
 }
 
+export type TranslationLabel = keyof typeof ui[typeof defaultLang]
+export type TranslationBankLanguage = keyof typeof ui
+
 interface UrlInfo {
-  lang: keyof typeof ui,
+  lang: TranslationBankLanguage,
   pathNodes: Array<string>,
   path: string
 }
@@ -18,7 +21,7 @@ export function getUrlInfo(url: URL):UrlInfo {
     const [,lang, ...pathNodes] = url.pathname.split('/')
 
     if (lang in ui) return {
-      'lang': lang as keyof typeof ui,
+      'lang': lang as TranslationBankLanguage,
       pathNodes,
       'path': pathNodes.join('/'),
     }
@@ -40,7 +43,7 @@ export function useTranslations(lang = defaultLang) {
     return input.replace(regex, value)
   }
 
-  return function t(key: keyof typeof ui[typeof defaultLang], options?: TranslationOptions):string {
+  return function t(key: TranslationLabel, options?: TranslationOptions):string {
     let label = Object.keys(ui[lang as typeof defaultLang]).includes(key)
       ? ui[lang as typeof defaultLang][key]
       : ui[defaultLang][key]
