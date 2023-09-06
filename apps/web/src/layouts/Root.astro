@@ -38,7 +38,13 @@ const { origin } = Astro.url
   </div>
   <NavBar />
   <slot />
-  <footer></footer>
+  <footer class="footer">
+    <ul class="footer_link-list">
+      <li class="link-list_item">
+        <a class="link-list_link" href={`${origin}/${currentLang}/humans.txt`} title="Learn about the project with humans.txt">humans.txt</a>
+      </li>
+    </ul>
+  </footer>
 </body>
 </html>
 
@@ -53,8 +59,31 @@ const { origin } = Astro.url
     align-items: flex-start;
     padding: 1rem 0.5rem 0 0;
     grid-area: controls;
-    width: 100vw;
     max-width: 100%;
+  }
+
+  .footer {
+    grid-area: footer;
+    padding: 1rem 0.5rem 1rem 0;
+
+    &_link-list {
+      list-style-type: none;
+      display: flex;
+      flex-flow: row nowrap;
+      justify-content: flex-end;
+      padding: 0;
+      max-width: 100%;
+    }
+  }
+
+  .link-list {
+    &_item {
+      padding: 0.25rem;
+    }
+
+    &_link {
+      color: hsl(var(--color-text));
+    }
   }
 
   .layout {
@@ -62,7 +91,7 @@ const { origin } = Astro.url
     max-width: 100%;
     display: grid;
     grid-template-columns: 1fr minmax(max-content, 80px);
-    grid-template-rows: 7rem max-content 1fr 10rem;
+    grid-template-rows: 7rem max-content 1fr 5rem;
     grid-column-gap: 0px;
     grid-row-gap: 0px;
     grid-template-areas:
