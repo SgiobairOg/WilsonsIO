@@ -1,8 +1,12 @@
 ---
 import BlogPostTag from '@components/BlogPostTag.astro'
+import type { CollectionEntry } from 'astro:content';
+interface Props {
+  tags: CollectionEntry<'blogPosts'>['data']['tags'];
+}
 const { tags } = Astro.props
 
-if(!tags?.length > 0) throw new Error("[BlogPostTagList]: Tag array is required");
+if(!tags || tags.length <= 0) throw new Error("[BlogPostTagList]: Tag array is required");
 ---
 
 <ul class="tags_list" aria-label="This article belongs to the following categories:">
