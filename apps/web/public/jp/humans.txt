@@ -1,0 +1,29 @@
+﻿/** humanstxt.org **/
+
+
+/* 断定 */
+
+  デザイナー, 開発元, QA, コミックリリーフ:　ウィルソン・エーバ
+  サイト: これと… https://potofu.me/aoibhe
+  居場所: Luzern, スイス
+  LinkedIn: https://www.linkedin.com/in/aoibhewilson/
+
+/* 承認 */
+
+  Astroの投稿者: フレームワークとすごくな文献集に、Astroのチーム、ありがとうごやいます。
+  サイト: https://github.com/withastro/astro/graphs/contributors
+
+  私の友達あゆみ: Never enough thanks for always, kindly reading my horrendous Japanese and trying to help me fix it ( fix me). あゆみさん、ありがとうございます！
+
+  Valtechの同僚: Neverending love and respect to my work colleagues at Valtech who have accepted and supported me.
+  サイト: https://www.valtech.com
+
+/* サイト */
+
+  先のアップデート: 2023年　9月　6日
+  スタンダーズ: HTML5, CSS3
+  言語: 英語 / 日本語
+  Doctype: HTML5
+  コンポーネント: Astro, Typescript, Vercel
+  ソフト: VSCode, Figma
+  

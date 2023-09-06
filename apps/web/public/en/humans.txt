@@ -1,0 +1,29 @@
+﻿/** humanstxt.org **/
+
+
+/* TEAM */
+
+  Designer, Developer, QA, Comic Relief: Aoibhe Wilson
+  Site: This one and https://potofu.me/aoibhe
+  Location: Luzern, Switzerland
+  Linkedin: https://www.linkedin.com/in/aoibhewilson/
+
+/* THANKS */
+
+  Astro Contributors: Thanks to the Astro team for their framework and the great documentation.
+  Site: https://github.com/withastro/astro/graphs/contributors
+
+  My friend Ayumi: Never enough thanks for always, kindly reading my horrendous Japanese and trying to help me fix it ( fix me). あゆみさん、ありがとうございます！
+
+  Valtech Colleagues: Neverending love and respect to my work colleagues at Valtech who have accepted and supported me.
+  Site: https://www.valtech.com
+
+/* SITE */
+
+  Last Update: 2023/09/06
+  Standards: HTML5, CSS3
+  Language: English / Japanese
+  Doctype: HTML5
+  Components: Astro, Typescript, Vercel, https://favicon.io/favicon-converter/
+  Software: VSCode, Figma
+  
