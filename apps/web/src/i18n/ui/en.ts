@@ -13,4 +13,6 @@ export const EN = {
     'blog.noPosts': 'I\'m working on my posts. Please check back soon.',
     'tags.intro': `Here's a collection of my posts that match with the '{tag}' tag. Happy reading!`,
     'tags.ariaLabel': `Read more stories that match with the '{tag}' tag.`,
+    'theme.setLight': "Set theme to light mode.",
+    'theme.setDark': "Set theme to dark mode.",
 }

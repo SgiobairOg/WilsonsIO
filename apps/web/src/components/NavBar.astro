@@ -1,11 +1,5 @@
 ---
-import { languages } from '@i18n/ui'
-import { useTranslations, getUrlInfo } from '@i18n/utils';
-import { Icon } from 'astro-icon'
-
-const {lang: currentLang, path: currentPath} = getUrlInfo(Astro.url);
-
-const t = useTranslations(currentLang);
+const {currentLang, langPath: currentPath, transl} = Astro.locals;
 
 const routes = {
   'nav.home': `/${currentLang}/`,
@@ -21,7 +15,7 @@ const routes = {
       .filter(([label, path]) => path !== `/${currentLang}/${currentPath}`)
       .map(([label, path]) => (
         <li class="main-nav_item">
-          <a class="main-nav_link" href={path}>{t(label, {markdown:false})}</a>
+          <a class="main-nav_link" href={path}>{transl(label, {markdown:false})}</a>
         </li>
       ))}
   </ol>

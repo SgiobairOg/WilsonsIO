@@ -1,10 +1,8 @@
 ---
 import { languages } from '@i18n/ui'
-import { useTranslations, getUrlInfo } from '@i18n/utils';
 import { Icon } from 'astro-icon'
 
-const {lang: currentLang, path} = getUrlInfo(Astro.url);
-const t = useTranslations(currentLang);
+const {currentLang, transl, langPath} = Astro.locals;
 ---
 <ul class="language-picker">
   <li aria-hidden="true" class="language-picker_icon">
@@ -15,7 +13,7 @@ const t = useTranslations(currentLang);
           "language-picker_item",
           { "language-picker_item--active": lang === currentLang}
           ]}>
-      <a class="language-picker_link" href={`/${lang}/${path}`} title={t(`lang.viewIn${lang.toUpperCase()}`, {markdown: false})}>{label}</a>
+      <a class="language-picker_link" href={`/${lang}/${langPath}`} title={transl(`lang.viewIn${lang.toUpperCase()}`, {markdown: false})}>{label}</a>
     </li>
   ))}
 </ul>

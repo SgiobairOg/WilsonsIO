@@ -1,16 +1,12 @@
 ---
-import { languages } from '@i18n/ui'
-import { useTranslations, getUrlInfo } from '@i18n/utils';
-
-const {lang: currentLang, path: currentPath} = getUrlInfo(Astro.url);
-const t = useTranslations(currentLang);
+const { transl } = Astro.locals
 ---
 
 <header class="masthead">
   <h1 class="title">
-    {t('header.greeting', {markdown: false})}
+    {transl('header.greeting', {markdown: false})}
   </h1>
-  <p class="subtitle">{t('header.intro', {markdown: false})}</p>
+  <p class="subtitle">{transl('header.intro', {markdown: false})}</p>
 </header>
 
 <style lang="scss">

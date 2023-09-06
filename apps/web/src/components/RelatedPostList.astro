@@ -1,6 +1,5 @@
 ---
 import type { CollectionEntry } from 'astro:content';
-import { useTranslations } from '@i18n/utils';
 import { postUrlFromSlug } from '@content/blogPosts/_utils';
 
 interface Props {
@@ -8,13 +7,12 @@ interface Props {
 }
 const { posts } = Astro.props;
 
-const {lang: currentLang} = Astro.params;
-const t = useTranslations(currentLang);
+const {transl} = Astro.locals
 
 if(!posts || !posts.length) throw new Error("[RelatedPostList]: Posts array is required");
 ---
 
-<h2>{t('blog.relatedPosts', {markdown: false})}</h2>
+<h2>{transl('blog.relatedPosts', {markdown: false})}</h2>
 <ul class="posts_list">
   { posts.map(post => (
     <li class="posts_item"><a class="posts_link" href={postUrlFromSlug(post.slug)}>{post.data.title}</a></li>

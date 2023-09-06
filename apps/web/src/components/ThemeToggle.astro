@@ -1,14 +1,11 @@
 ---
-import { languages } from '../i18n/ui'
-import { useTranslations, getUrlInfo } from './../i18n/utils';
 import { Icon } from 'astro-icon'
 
-const {lang: currentLang} = getUrlInfo(Astro.url);
-const t = useTranslations(currentLang);
+const {transl} = Astro.locals
 ---
 <button id="themeToggle" class="theme-toggle">
-  <Icon class="theme-toggle_icon theme-toggle_icon--sun" pack="ph" name="sun-bold" aria-label="Set theme to light mode."/>
-  <Icon class="theme-toggle_icon theme-toggle_icon--moon" pack="ph" name="moon-bold"  aria-label="Set theme to dark mode."/>
+  <Icon class="theme-toggle_icon theme-toggle_icon--sun" pack="ph" name="sun-bold" aria-label={transl('theme.setLight', {markdown: false})}/>
+  <Icon class="theme-toggle_icon theme-toggle_icon--moon" pack="ph" name="moon-bold"  aria-label={transl('theme.setDark', {markdown: false})}/>
 </button>
 
 <script is:inline>

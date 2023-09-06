@@ -1,13 +1,11 @@
 ---
-import { getUrlInfo } from '@i18n/utils'
 import LanguagePicker from '@components/LanguagePicker.astro'
 import ThemeToggle from '@components/ThemeToggle.astro'
 import NavBar from '@components/NavBar.astro'
-import Masthead from '@components/Masthead.astro'
 
 import '@styles/global.scss';
 
-const {lang: currentLang} = getUrlInfo(Astro.url);
+const {currentLang} = Astro.locals;
 const { title } = Astro.props
 ---
 <!DOCTYPE html>

@@ -1,13 +1,10 @@
 ---
-import { useTranslations, getUrlInfo } from '@i18n/utils';
-
-const {lang: currentLang, path} = getUrlInfo(Astro.url);
-const t = useTranslations(currentLang);
+const {currentLang, transl} = Astro.locals;
 const { tagName } = Astro.props 
 ---
 
 <div class="tag">
-  <a href={`/${currentLang}/blog/tags/${tagName}`} title={t('tags.ariaLabel', {replacements: [{'tag': tagName}], markdown: false})} class="tag_link">{tagName}</span>
+  <a href={`/${currentLang}/blog/tags/${tagName}`} title={transl('tags.ariaLabel', {replacements: [{'tag': tagName}], markdown: false})} class="tag_link">{tagName}</span>
 </div>
 
 <style lang="scss">
