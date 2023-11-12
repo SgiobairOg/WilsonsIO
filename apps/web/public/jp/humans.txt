@@ -24,6 +24,6 @@
   スタンダーズ: HTML5, CSS3
   言語: 英語 / 日本語
   Doctype: HTML5
-  コンポーネント: Astro, Typescript, Vercel
+  コンポーネント: Astro, Typescript, Vercel, https://favicon.io/favicon-converter/
   ソフト: VSCode, Figma
   
